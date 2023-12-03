@@ -1,0 +1,16 @@
+package com.kh.springChap1.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+@Getter
+@Setter
+public class User {
+	
+	@Id
+	private Long id;
+	private String username;
+	private String email;
+	
+}

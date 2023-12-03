@@ -1,0 +1,8 @@
+package com.kh.springChap1.model;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class User {
+
+}
