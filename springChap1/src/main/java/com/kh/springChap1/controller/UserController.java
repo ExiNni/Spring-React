@@ -32,7 +32,7 @@ public class UserController {
 	 	200: 성공적으로 데이터 전송
 	 	ResponseEntity.ok는 데이터를 잘 전송했다는 의미, 200이라는 내용을 담고 있음
 	 */
-	@PostMapping
+	@PostMapping("/user")
 	public ResponseEntity<User> createUser(@RequestBody User newUser){
 		User createdUser = userRepository.save(newUser);
 		return ResponseEntity.ok(createdUser);
