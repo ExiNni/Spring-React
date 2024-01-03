@@ -9,7 +9,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8081/api/item')
+      .get('http://localhost:8080/api/item')
       .then((response) => {
         setProducts(response.data);
       })
@@ -20,7 +20,7 @@ const App = () => {
 
   const handleAddProduct = () => {
     axios
-      .post('http://localhost:8081/api/add', newProduct)
+      .post('http://localhost:8080/api/add', newProduct)
       .then((response) => {
         setProducts((prevProducts) => [...prevProducts, response.data]);
         setNewProduct({ name: '', price: '', description:'' });
@@ -32,7 +32,7 @@ const App = () => {
 
   const handleDeleteProduct = (id) => {
     axios
-      .delete(`http://localhost:8081/api/delete/${id}`)
+      .delete(`http://localhost:8080/api/delete/${id}`)
       .then((response) => {
         setProducts((prevProduct) =>
           //현재 목록에서 삭제할 제품을 제외하고
@@ -72,14 +72,7 @@ const App = () => {
                     삭제
                   </button>
                 </td>
-                <td>
-                  <button onClick={() => handleEditProduct(product)}>
-                    수정하기
-                  </button>
-                </td>
               </tr>
-
-              <h2>{isEditing ? '상품 수정' : '상품 추가'}</h2>
             ))}
           </tbody>
         </table>
