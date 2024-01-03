@@ -1,0 +1,14 @@
+<!-- loginSuccess.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Success</title>
+</head>
+<body>
+    <h1 th:text="${newUser}">환영합니다! 새로운 사용자입니다.</h1>
+	<p th:text="${email != null ? email : 'Unknown'}"></p>
+    <a th:href="@{/}">로그아웃</a>
+</body>
+</html>
