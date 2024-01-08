@@ -50,8 +50,6 @@ public class MemberController {
 	    model.addAttribute("member", member);
 	    return "updateMember"; 
 	}
-	
-	
 
 	@GetMapping("/delete")
 	public String deleteMember(@RequestParam("id") long id) {

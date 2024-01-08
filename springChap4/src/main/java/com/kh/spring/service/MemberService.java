@@ -25,15 +25,14 @@ public class MemberService {
         memberMapper.updateMember(member);
     }
 
-    public void deleteMember(long id) {
-        memberMapper.deleteMember(id);
-    }
-
     public Member getMemberById(long id) {
         return memberMapper.getMemberById(id);
     }
     
-    
+    public void deleteMember(long id) {
+        memberMapper.deleteMember(id);
+    }
+
     
     
 }
