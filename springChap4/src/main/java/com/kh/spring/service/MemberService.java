@@ -1,5 +1,7 @@
 package com.kh.spring.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,4 +16,24 @@ public class MemberService {
     public void signUpMember(Member member) {
         memberMapper.insertMember(member);
     }
+    
+    public List<Member> getAllMembers() {
+        return memberMapper.selectAllMembers();
+    }
+    
+    public void updateMember(Member member) {
+        memberMapper.updateMember(member);
+    }
+
+    public void deleteMember(long id) {
+        memberMapper.deleteMember(id);
+    }
+
+    public Member getMemberById(long id) {
+        return memberMapper.getMemberById(id);
+    }
+    
+    
+    
+    
 }

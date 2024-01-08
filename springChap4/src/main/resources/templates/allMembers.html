@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>All Members</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th,
+		td {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		th {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h2>All Members</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Member ID</th>
+				<th>Username</th>
+				<th>Password</th>
+				<th>Fullname</th>
+				<th>Email</th>
+				<th>Registration Date</th>
+				<th>수정하기</th>
+				<th>삭제하기</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="member : ${member}">
+				<td th:text="${member.memberID}"></td>
+				<td th:text="${member.username}"></td>
+				<td th:text="${member.password}"></td>
+				<td th:text="${member.fullname}"></td>
+				<td th:text="${member.email}"></td>
+				<td th:text="${member.registrationDate}"></td>
+				<td><a th:href="@{'/member/update?id=' + ${member.memberID}}"><button>수정하기</button></a></td>
+				<td><a th:href="@{'/member/delete?id=' + ${member.memberID}}"><button>삭제하기</button></a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/}"><button>홈으로 돌아가기</button></a>
+</body>
+
+</html>

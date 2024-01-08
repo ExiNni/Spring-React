@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
@@ -19,17 +20,27 @@ public class DatabaseConfig {
 	sql/create-members-table.sql에 추가할 DDL문을 작성해서 넣어줌
 	*/
 
-//	@Bean
-//	public DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
-//		DataSourceInitializer initializer = new DataSourceInitializer();
-//		initializer.setDataSource(dataSource);
-//		initializer.setDatabasePopulator(databasePopulator());
-//		return initializer;
-//	}
-//	
-//	private ResourceDatabasePopulator databasePopulator() {
-//		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-//		populator.addScript(new ClassPathResource("sql/create-members-table.sql"));
-//		return populator;
-//	}
+	@Bean
+	public DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
+		DataSourceInitializer initializer = new DataSourceInitializer();
+		initializer.setDataSource(dataSource);
+		initializer.setDatabasePopulator(databasePopulator(dataSource));
+		return initializer;
+	}
+	
+	private ResourceDatabasePopulator databasePopulator(DataSource dataSource) {
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		
+		if(!tableExists(dataSource, "members")) {
+			populator.addScript(new ClassPathResource("sql/create-members-table.sql"));
+		}
+		return populator;
+	}
+	
+	private boolean tableExists(DataSource dataSource, String tableName) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		String query = "SELECT COUNT(*) FROM ALL_TABLES WHERE TABLE_NAME = UPPER(?)";
+		int count = jdbcTemplate.queryForObject(query, Integer.class, tableName.toUpperCase());
+		return count > 0;
+	}
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="EUC-KR">
+	<title>Update Member</title>
+</head>
+
+<body>
+	<form th:action="@{/member/update}" th:object="${member}" method="post">
+		<input type="hidden" th:field="*{memberID}" />
+		
+		<label for="username">닉네임: </label>
+		<input type="text" th:field="*{username}" />
+		<br/>
+		
+		<label for="password">비밀번호: </label>
+		<input type="text" th:field="*{password}" />
+		<br/>
+		
+		<label for="fullname">이름: </label>
+		<input type="text" th:field="*{fullname}" />
+		<br/>
+		
+		<label for="email">이메일: </label>
+		<input type="text" th:field="*{email}" />
+		
+		<button type="submit">수정하기</button>
+	</form>
+</body>
+
+</html>
+

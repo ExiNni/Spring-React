@@ -2,8 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//myBatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.spring.mapper.MemberMapper">
 	<!-- 회원 등록 -->
-	<insert id="insertMember" parameterType="com.kh.spring.model.Member">
-		INSERT INTO Members (MEMBERID, USERNAME, PASSWORD, FULLNAME, EMAIL, REGISTRATIONDATE)
-		VALUES(members_seq.NEXTVAL, #{username}, #{password}, #{fullname}, #{email}, #{registrationDate, jdbcType=DATE})
+	<insert id="insertMember"
+		parameterType="com.kh.spring.model.Member">
+		INSERT INTO Members (MEMBERID, USERNAME, PASSWORD,
+		FULLNAME, EMAIL, REGISTRATIONDATE)
+		VALUES(members_seq.NEXTVAL,
+		#{username}, #{password}, #{fullname}, #{email}, sysdate)
 	</insert>
+
+	<select id="selectAllMembers"
+		resultType="com.kh.spring.model.Member">
+		SELECT * FROM Members ORDER BY memberID
+	</select>
+
+	<update id="updateMember"
+		parameterType="com.kh.spring.model.Member">
+		UPDATE MEMBERS
+		SET username = #{username}, password = #{password}, fullname = #{fullname}, email = #{email}
+		WHERE MEMBERID = #{memberID}
+	</update>
+
+	<select id="getMemberById" parameterType="long"
+		resultType="com.kh.spring.model.Member">
+		SELECT * FROM Members WHERE MEMBERID = #{id}
+	</select>
+
+	<delete id="deleteMember" parameterType="long">
+		DELETE FROM MEMBERS WHERE MEMBERID = #{id}
+	</delete>
 </mapper>
