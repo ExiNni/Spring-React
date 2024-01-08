@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//myBatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.spring.mapper.MemberMapper">
+	<!-- 회원 등록 -->
+	<insert id="insertMember" parameterType="com.kh.spring.model.Member">
+		INSERT INTO Members (MEMBERID, USERNAME, PASSWORD, FULLNAME, EMAIL, REGISTRATIONDATE)
+		VALUES(members_seq.NEXTVAL, #{username}, #{password}, #{fullname}, #{email}, #{registrationDate, jdbcType=DATE})
+	</insert>
+</mapper>
